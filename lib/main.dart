@@ -18,7 +18,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Video Calling App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        textTheme: const TextTheme(
+            titleLarge: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w700)),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
       ),
       home: MyHomePage(),
@@ -35,7 +40,9 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Video Calling App', style: Theme.of(context).textTheme.titleMedium),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: Text('Video Calling App',
+            style: Theme.of(context).textTheme.titleLarge),
       ),
       body: Center(
         child: Padding(
@@ -53,9 +60,12 @@ class MyHomePage extends StatelessWidget {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> CallPage(
-                        localUserId: localUserID,
-                        id: callIdTextCtrl.text.toString().trim())));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CallPage(
+                                  localUserId: localUserID,
+                                  id: callIdTextCtrl.text.toString().trim())));
                     },
                     child: const Text('Join'))
               ],
